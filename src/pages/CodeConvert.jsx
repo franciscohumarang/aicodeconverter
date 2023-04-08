@@ -1,18 +1,19 @@
 import React, { useState } from "react";
 import axios from "axios";
 import LinearIndeterminate from "../components/LinearIndeterminate";
- 
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
 
 
-function CodeConverter() {
+function Codeswaper() {
  
   const [leftText, setLeftText] = useState("");
   const [rightText, setRightText] = useState("");
-  const [selectedLeftLanguage, setSelectedLeftLanguage] = useState("python");
+  const [selectedLeftLanguage, setSelectedLeftLanguage] = useState("csharp");
   const [selectedRightLanguage, setSelectedRightLanguage] = useState("python");
   const [isLoading, setIsLoading] = useState(false);
-
-  const handleConvert = async () => {
+  const [isError, setError] = useState(false);
+  const handleswap = async () => {
     try {
 
       if (leftText == "") 
@@ -21,6 +22,7 @@ function CodeConverter() {
         return;
       }
       setIsLoading(true);
+       
       const response = await axios.post(
         "https://api.openai.com/v1/completions",
         {
@@ -36,7 +38,7 @@ function CodeConverter() {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: 'Bearer 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',
+            Authorization: 'Bearer ' + process.env.REACT_APP_APIKEY ,
           },
         }
       );
@@ -44,6 +46,7 @@ function CodeConverter() {
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
+setError(true);
       console.error(error);
     }
   };
@@ -57,88 +60,120 @@ function CodeConverter() {
   }
 
   return (
-
-    <div className="container">
-
-          <div>
-      {isLoading ? <LinearIndeterminate /> : <p></p>}  
-    </div>
-    <div className="textarea-container">
-      
-
-
-      <div className="left-textarea-container">
-        <div className="left-dropdown-container">
   
-          <select
-          className="dropdown-select"
-            id="leftLanguage"
-            value={selectedLeftLanguage}
-            onChange={(event) => setSelectedLeftLanguage(event.target.value)}
-          >
-            <option value="python">Python</option>
-            <option value="java">Java</option>
-            <option value="csharp">C#</option>
-            <option value="vbnet">VB.NET</option>
-            <option value="golang">Golang</option>
-            <option value="php">PHP</option>
-            <option value="c">C</option>
-            <option value="cplusplus">C++</option>
-            <option value="ruby">Ruby</option>
-            <option value="Scala">Scala</option>
-            {/* Add more options as needed */}
-          </select>
-        </div>
-        <textarea
-          className="textarea"
-          id="leftTextarea"
+    <div className="container">
+              <div>
+      {isLoading ? <LinearIndeterminate /> : <p></p>}  
+      </div>
+      <div>
+        { isError &&
+       
+            <Alert  onClose={() => { setError(false)}} severity="error">Error occured swaping. Please try again later.</Alert>
+           
+        }
+      </div>
+      <div className="intro-text">
+    <p><b>Welcome to Syntax Swapper! Swap one programming language with AI for FREE!</b></p>
+    <p>&#128073; To swap one language to another, select the programming language and paste the code on the left side </p>
+    <p>Select the programming language you wish to be swaped, and press swap</p>
+    <p>&#x1F4A1; You can also type a piece of code you wish to generate like fibonacci, recurssive function, etc. on your selected language.</p>
+  </div>
+    <div className="text-area-container">
+        <select className="dropdown"
+         value={selectedLeftLanguage}
+         onChange={(event) => setSelectedLeftLanguage(event.target.value)}>
+<option value="abap">ABAP</option>
+<option value="ada">ADA</option>
+<option value="bash">Bash</option>
+<option value="c">C</option>
+<option value="cplusplus">C++</option>
+<option value="csharp">C#</option>
+<option value="cobol">Cobol</option>
+<option value="dart">Dart</option>
+<option value="erlang">Erlang</option>
+<option value="fsharp">F#</option>
+<option value="golang">Golang</option>
+<option value="groovy">Groovy</option>
+<option value="java">Java</option>
+<option value="jscript">JavaScript</option>
+<option value="julia">Julia</option>
+<option value="kotlin">Kotlin</option>
+<option value="lisp">Lisp</option>
+<option value="lua">Lua</option>
+<option value="objective">Objective-C</option>
+<option value="perl">Perl</option>
+<option value="php">PHP</option>
+<option value="prolog">Prolog</option>
+<option value="python">Python</option>
+<option value="rpg">RPG</option>
+<option value="ruby">Ruby</option>
+<option value="rust">Rust</option>
+<option value="sas">SASA</option>
+<option value="scala">Scala</option>
+<option value="sol">Solidity</option>
+<option value="swift">Swift</option>
+<option value="vbnet">VB.NET</option>
+          
+
+      </select>
+      <textarea id="leftTextarea"
           value={leftText}
           onChange={(event) => setLeftText(event.target.value)}
-          placeholder="Paste code here..."
-        />
-      </div>
-      <div className="right-textarea-container">
-        <div className="right-dropdown-container">
-
-          <select
-          className="dropdown-select"
-            id="rightLanguage"
+          placeholder="Paste code here..." className="text-area"></textarea>
+    </div>
+    <div className="text-area-container">
+      <select className="dropdown"   id="rightLanguage"
             value={selectedRightLanguage}
             onChange={(event) => setSelectedRightLanguage(event.target.value)}>
-            
-            <option value="python">Python</option>
-            <option value="java">Java</option>
-            <option value="csharp">C#</option>
-            <option value="vbnet">VB.NET</option>
-            <option value="golang">Golang</option>
-            <option value="php">PHP</option>
-            <option value="c">C</option>
-            <option value="cplusplus">C++</option>
-            <option value="ruby">Ruby</option>
-            <option value="Scala">Scala</option>
-          </select>
-        </div>
-        <textarea
-          className="textarea"
+      <option value="abap">ABAP</option>
+<option value="ada">ADA</option>
+<option value="bash">Bash</option>
+<option value="c">C</option>
+<option value="cplusplus">C++</option>
+<option value="csharp">C#</option>
+<option value="cobol">Cobol</option>
+<option value="dart">Dart</option>
+<option value="erlang">Erlang</option>
+<option value="fsharp">F#</option>
+<option value="golang">Golang</option>
+<option value="groovy">Groovy</option>
+<option value="java">Java</option>
+<option value="jscript">JavaScript</option>
+<option value="julia">Julia</option>
+<option value="kotlin">Kotlin</option>
+<option value="lisp">Lisp</option>
+<option value="lua">Lua</option>
+<option value="objective">Objective-C</option>
+<option value="perl">Perl</option>
+<option value="php">PHP</option>
+<option value="prolog">Prolog</option>
+<option value="python">Python</option>
+<option value="rpg">RPG</option>
+<option value="ruby">Ruby</option>
+<option value="rust">Rust</option>
+<option value="sas">SASA</option>
+<option value="scala">Scala</option>
+<option value="sol">Solidity</option>
+<option value="swift">Swift</option>
+<option value="vbnet">VB.NET</option>
+      </select>
+        <textarea className="text-area"
           id="rightTextarea"
           value={rightText}
           readOnly
-          placeholder="Converted code goes here"
-        />
-      </div>
-    </div>   
-     <div class="button-container">
-      <button className="convert-button" onClick={handleConvert}>Convert</button>
-      <button className="clear-button" onClick={handleClear}>Clear</button>
-      <button className="copy-button" onClick={handleCopy}>Copy</button>
+          placeholder="swaped code goes here"></textarea>
     </div>
-
- 
-  
+    <div className="button-container">
+      <button className="button" onClick={handleswap}>Swap</button>
+      <button className="button" onClick={handleClear}>Clear</button>
+      <button className="button copy" onClick={handleCopy}>Copy</button>
+    </div>
   </div>
+
+    
 );
 }
 
 
 
-export default CodeConverter;
+export default Codeswaper;
