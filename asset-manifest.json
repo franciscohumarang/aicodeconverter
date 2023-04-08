@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/franciscohumarang/syntaxswapper/static/css/main.ea008a08.css",
-    "main.js": "/franciscohumarang/syntaxswapper/static/js/main.4b4cdba5.js",
-    "static/js/787.85fa73b3.chunk.js": "/franciscohumarang/syntaxswapper/static/js/787.85fa73b3.chunk.js",
-    "index.html": "/franciscohumarang/syntaxswapper/index.html",
-    "main.ea008a08.css.map": "/franciscohumarang/syntaxswapper/static/css/main.ea008a08.css.map",
-    "main.4b4cdba5.js.map": "/franciscohumarang/syntaxswapper/static/js/main.4b4cdba5.js.map",
-    "787.85fa73b3.chunk.js.map": "/franciscohumarang/syntaxswapper/static/js/787.85fa73b3.chunk.js.map"
+    "main.css": "/syntaxswapper/static/css/main.ea008a08.css",
+    "main.js": "/syntaxswapper/static/js/main.a8837cfc.js",
+    "static/js/787.85fa73b3.chunk.js": "/syntaxswapper/static/js/787.85fa73b3.chunk.js",
+    "index.html": "/syntaxswapper/index.html",
+    "main.ea008a08.css.map": "/syntaxswapper/static/css/main.ea008a08.css.map",
+    "main.a8837cfc.js.map": "/syntaxswapper/static/js/main.a8837cfc.js.map",
+    "787.85fa73b3.chunk.js.map": "/syntaxswapper/static/js/787.85fa73b3.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ea008a08.css",
-    "static/js/main.4b4cdba5.js"
+    "static/js/main.a8837cfc.js"
   ]
 }
