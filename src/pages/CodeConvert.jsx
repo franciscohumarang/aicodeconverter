@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import LinearIndeterminate from "../components/LinearIndeterminate";
 import Alert from '@mui/material/Alert';
-import Stack from '@mui/material/Stack';
+
 
 
 function Codeswaper() {
@@ -16,7 +16,7 @@ function Codeswaper() {
   const handleswap = async () => {
     try {
 
-      if (leftText == "") 
+      if (leftText === "") 
       {
         alert("Please paste code")
         return;
@@ -60,11 +60,13 @@ setError(true);
   }
 
   return (
-  
-    <div className="container">
+  <div>
               <div>
       {isLoading ? <LinearIndeterminate /> : <p></p>}  
       </div>
+
+    <div className="container">
+      
       <div>
         { isError &&
        
@@ -120,7 +122,10 @@ setError(true);
           value={leftText}
           onChange={(event) => setLeftText(event.target.value)}
           placeholder="Paste code here..." className="text-area"></textarea>
-    </div>
+        </div>
+        <div className="arrow-container"> {/* Add this div */}
+  <span className="arrow">➡️</span>
+</div>
     <div className="text-area-container">
       <select className="dropdown"   id="rightLanguage"
             value={selectedRightLanguage}
@@ -155,7 +160,8 @@ setError(true);
 <option value="scala">Scala</option>
 <option value="sol">Solidity</option>
 <option value="swift">Swift</option>
-<option value="vbnet">VB.NET</option>
+            <option value="vbnet">VB.NET</option>
+            
       </select>
         <textarea className="text-area"
           id="rightTextarea"
@@ -169,7 +175,7 @@ setError(true);
       <button className="button copy" onClick={handleCopy}>Copy</button>
     </div>
   </div>
-
+  </div>
     
 );
 }

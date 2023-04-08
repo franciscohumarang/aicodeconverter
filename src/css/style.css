@@ -96,6 +96,17 @@ body {
     background-color: #4caf50;
 }
  
+.arrow-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+  }
+  
+  .arrow {
+    font-size: 24px;
+  }
+  
 
   footer {
     background-color: #2f4256;
