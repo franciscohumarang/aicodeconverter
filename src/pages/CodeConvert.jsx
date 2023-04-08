@@ -67,7 +67,7 @@ setError(true);
 
     <div className="container">
       
-      <div>
+        <div className="intro-text">
         { isError &&
        
             <Alert  onClose={() => { setError(false)}} severity="error">Error occured swaping. Please try again later.</Alert>
