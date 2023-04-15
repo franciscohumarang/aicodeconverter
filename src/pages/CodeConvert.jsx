@@ -22,26 +22,16 @@ function Codeswaper() {
         return;
       }
       setIsLoading(true);
+      setError(false);
+      const data = {
+        selectedLeftLanguage: selectedLeftLanguage,
+        selectedRightLanguage: selectedRightLanguage,
+        leftText: leftText
+      };
        
-      const response = await axios.post(
-        "https://api.openai.com/v1/completions",
-        {
-        model:"text-davinci-003",
-          prompt: "Translate code from" + selectedLeftLanguage + " to " + selectedRightLanguage + ":"  + leftText,
-          max_tokens: 1024,
-          temperature: 0.5,
-          top_p: 1,
-          frequency_penalty: 0,
-          presence_penalty: 0,
-          stop: ">>>"
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: 'Bearer ' + process.env.REACT_APP_APIKEY ,
-          },
-        }
-      );
+      const response = await axios.post('https://syntaxswapper.azurewebsites.net/api/syntaxswapper', data);
+    
+
       setRightText(response.data.choices[0].text);
       setIsLoading(false);
     } catch (error) {
