@@ -14,17 +14,22 @@ body {
     flex-wrap: wrap;
 }
 .intro-text {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
     margin-bottom: 30px;
-    width: 100%;
+    width:90%;
     margin-left: 30px;
-    color:#cdcccc;
-    background-color: #2f4256; 
+    color: #cdcccc;
+ 
     border-radius: 5px;
     font-size: 16px;
     
   }
-  
+  .intro-text p {
+    margin: 0 50px;
+  }
 .text-area-container {
     width: calc(50% - 50px);
 }
@@ -53,7 +58,7 @@ body {
     box-sizing: border-box;
     resize: none;
     background-color: #293b4c;
-    color: #fff;
+    color:#cdcccc;
 }
 
 .button-container {
@@ -66,7 +71,7 @@ body {
 
 .button {
     border: none;
-    color: #cdcccc;
+    color: white;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
@@ -105,6 +110,18 @@ body {
   
   .arrow {
     font-size: 24px;
+  }
+  .charlen-container {
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    width: 100%;
+  }
+  
+  .charlen{
+    font-size: 12px;
+    font-style: italic;
+    color:#cdcccc;
   }
   
 

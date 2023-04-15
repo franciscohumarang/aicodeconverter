@@ -2,17 +2,19 @@ import React, { useState } from "react";
 import axios from "axios";
 import LinearIndeterminate from "../components/LinearIndeterminate";
 import Alert from '@mui/material/Alert';
-
+import logo from './aiimg.png';
 
 
 function Codeswaper() {
  
   const [leftText, setLeftText] = useState("");
   const [rightText, setRightText] = useState("");
+ 
   const [selectedLeftLanguage, setSelectedLeftLanguage] = useState("csharp");
   const [selectedRightLanguage, setSelectedRightLanguage] = useState("python");
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setError] = useState(false);
+  const MAX_LENGTH = 2000;
   const handleswap = async () => {
     try {
 
@@ -46,8 +48,17 @@ setError(true);
   };
 
   const handleClear =() => {
-  setRightText("")
+    setRightText("");
+    setLeftText("");
   }
+
+  const handlLeftTextChange = (event) => {
+    const newText = event.target.value;
+    if (newText.length <= MAX_LENGTH) {
+    
+      setLeftText(newText);
+    }
+  };
 
   return (
   <div>
@@ -64,13 +75,15 @@ setError(true);
            
         }
       </div>
-      <div className="intro-text">
-    <p><b>Welcome to Syntax Swapper! Swap one programming language with AI for FREE!</b></p>
-    <p>&#128073; To swap one language to another, select the programming language and paste the code on the left side </p>
-    <p>Select the programming language you wish to be swaped, and press swap</p>
-    <p>&#x1F4A1; You can also type a piece of code you wish to generate like fibonacci, recurssive function, etc. on your selected language.</p>
+        <div className="intro-text">
+        <img src={logo} alt="Logo" width={120} height={120} />
+    <p><b>Welcome to Syntax Swapper! Swap one programming language with AI for FREE!</b><br></br><br></br>
+     &#128073; To swap one language to another, select the programming language and paste the code on the left side <br></br><br></br>
+     Select the programming language you wish to be swaped, and press swap<br></br>
+     <br></br>&#x1F4A1; You can also type a piece of code you wish to generate like fibonacci, recurssive function, etc. on your selected language.</p>
   </div>
-    <div className="text-area-container">
+        <div className="text-area-container">
+          
         <select className="dropdown"
          value={selectedLeftLanguage}
          onChange={(event) => setSelectedLeftLanguage(event.target.value)}>
@@ -110,12 +123,15 @@ setError(true);
       </select>
       <textarea id="leftTextarea"
           value={leftText}
-          onChange={(event) => setLeftText(event.target.value)}
-          placeholder="Paste code here..." className="text-area"></textarea>
+          onChange={handlLeftTextChange}
+          placeholder="Paste/type your code here. Limit to 2000 characters only" className="text-area"></textarea>
         </div>
+    
+      
         <div className="arrow-container"> {/* Add this div */}
   <span className="arrow">➡️</span>
-</div>
+        </div>
+        
     <div className="text-area-container">
       <select className="dropdown"   id="rightLanguage"
             value={selectedRightLanguage}
@@ -157,8 +173,11 @@ setError(true);
           id="rightTextarea"
           value={rightText}
           readOnly
-          placeholder="swaped code goes here"></textarea>
-    </div>
+          placeholder="Swaped code goes here"></textarea>
+        </div>
+        <div className="charlen-container"> 
+        <span className="charlen">{MAX_LENGTH - leftText.length} characters left</span>
+        </div>
     <div className="button-container">
       <button className="button" onClick={handleswap}>Swap</button>
       <button className="button" onClick={handleClear}>Clear</button>
